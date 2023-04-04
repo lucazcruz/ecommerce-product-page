@@ -30,6 +30,10 @@ img {
   cursor: pointer;
 }
 
+.image-main {
+  cursor: initial;
+}
+
 body {
   font-size: 16px;
   font-family: 'Kumbh Sans', sans-serif;
@@ -53,8 +57,7 @@ button {
   gap: 10px;
 }
 
-button:hover,
-img:hover {
+button:hover {
   filter: brightness(.8);
 }
 
@@ -68,5 +71,10 @@ img:hover {
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin-top: 100px;
+  }
+
+  img:hover {
+    filter: brightness(.8);
+    cursor: pointer;
   }
 }

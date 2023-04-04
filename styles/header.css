@@ -29,6 +29,7 @@ header {
   left: 0;
   top: 0;
   bottom: 0;
+  z-index: 99;
 }
 
 .header-menu ul {
@@ -48,7 +49,9 @@ header {
   bottom: 0;
   right: 0;
   left: 0;
+  z-index: 9;
 }
+
 
 /* JAVASCRIPT */
 .header-menu.active,
@@ -71,9 +74,10 @@ header {
     position: static;
     padding: 0;
     color: var(--color-3);
+    z-index: initial;
   }
   
-  .header-menu .close-btn,
+  .close-btn,
   .menu-btn {
     display: none;
   }
@@ -82,6 +86,5 @@ header {
     flex-direction: row;
     margin: 0;
     font-weight: 400;
-
   }
 }

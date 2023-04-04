@@ -2,12 +2,35 @@
   position: relative;
 }
 
+.amount-items {
+  display: none;
+}
+
+.amount-items {
+  background: #ffa500;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 12px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: -12px;
+  right: -10px;
+}
+
 .cart-modal {
   display: none;
 
   position: absolute;
   top: 50px;
   right: -60px;
+  z-index: 9;
 
   min-width: 290px;
   background: white;

@@ -1,24 +1,29 @@
-class ProductExist {
-   static verify() {
-    this.cartContent = document.querySelector(".cart-content");
-    if (!this.cartContent.children[0]) {
-      this.cartContent.innerHTML = `<span class="empty">Your cart is empty.</span>`;
-    }
-  }
-}
-
 export default class Cart {
   constructor(cartButton, cartModal) {
     this.cartButton = document.querySelector(cartButton);
     this.cartModal = document.querySelector(cartModal);
+    this.cartContent = this.cartModal.querySelector(".cart-content")
+    this.checkoutButton = this.cartModal.querySelector(".checkout-btn");
 
     this.openCart = this.openCart.bind(this);
     this.close = this.close.bind(this);
-  } 
+  }
+
+  isEmpty() {
+    if (!this.cartContent.children.length) {
+      this.cartContent.innerHTML = `<span class="empty">Your cart is empty.</span>`;
+      this.checkoutButton.style.display= "none";
+
+    } else {
+      const empty = document.querySelector(".empty")
+      this.checkoutButton.style.display = "block";
+      if (empty) empty.remove();
+    }
+  }
 
   openCart() {
-    // ProductExist.verify();
     this.cartModal.classList.toggle("active")
+    this.isEmpty()
 
     setTimeout(() => {
       document.addEventListener("click", this.close)

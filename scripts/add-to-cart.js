@@ -1,16 +1,17 @@
-import Cart from './cart.js';
-const cart = new Cart(".cart-btn", ".cart-modal");
-
 export default class AddToCart {
   constructor(addButton, cartContent) {
     this.addbutton = document.querySelector(addButton, );
     this.cartContent = document.querySelector(cartContent);
+    this.amount = document.querySelector(".amount-items");
 
     this.addProduct = this.addProduct.bind(this);
     this.removeProduct = this.removeProduct.bind(this);
-
   }
-  
+
+  amountItems() {
+    this.amount.innerText = this.cartContent.children.length
+  }
+
   productConstruct(amount) {
     const div = document.createElement("div");
     div.classList.add("cart-product");
@@ -26,7 +27,10 @@ export default class AddToCart {
   }
 
   removeProduct({ target }) {
-    target.parentElement.remove()
+    if (target) {
+      target.parentElement.remove()
+      this.amountItems();
+    }
   }
 
   addProduct() {
@@ -35,22 +39,18 @@ export default class AddToCart {
       return;
     }
 
-    document.querySelector(".empty").remove()
-
     const product = this.productConstruct(amount);
     this.cartContent.appendChild(product);
-    cart.openCart();
 
-    this.data = [...this.cartContent.children]
-    console.log(this.data)
-    this.data.forEach(item => {
+    [...this.cartContent.children].forEach(item => {
       item.querySelector(".remove").addEventListener("click", this.removeProduct)
     })
+
+    this.amountItems();
   }
 
   addCartEvents() {
     this.addbutton.addEventListener("click", this.addProduct);
-
   }
 
   init() {
