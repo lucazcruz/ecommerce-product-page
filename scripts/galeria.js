@@ -1,8 +1,8 @@
 class Galeria {
-  constructor(product, imageMain, images) {
-    this.product = document.querySelector(product);
-    this.imageMain = document.querySelector(imageMain);
-    this.images = document.querySelectorAll(images);
+  constructor(galeria) {
+    this.galeria = document.querySelector(galeria);
+    this.imageMain = this.galeria.querySelector(".image-main");
+    this.images = this.galeria.querySelectorAll(".galeria img");
 
     this.toggle = this.toggle.bind(this);
   }
@@ -28,8 +28,8 @@ class Galeria {
 }
 
 class Modal extends Galeria {
-  constructor (product, imageMain, images) {
-    super(product, imageMain, images)
+  constructor (galeria) {
+    super(galeria)
 
     this.modalUp = this.modalUp.bind(this);
     this.removeModal = this.removeModal.bind(this);
@@ -55,7 +55,7 @@ class Modal extends Galeria {
   createModal() {
     let div = document.createElement("div");
     div.classList.add("product-modal")
-    div.innerHTML = this.product.innerHTML;
+    div.innerHTML = this.galeria.innerHTML;
     return div
   }
 
