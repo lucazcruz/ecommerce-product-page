@@ -9,12 +9,13 @@ export default class Cart {
     this.close = this.close.bind(this);
   }
 
-  isEmpty() {
+  isEmpty(empty) {
     if (!this.cartContent.children.length) {
       this.cartContent.innerHTML = `<span class="empty">Your cart is empty.</span>`;
       this.checkoutButton.style.display= "none";
+    }
 
-    } else {
+    if (empty == 2) {
       const empty = document.querySelector(".empty")
       this.checkoutButton.style.display = "block";
       if (empty) empty.remove();
@@ -23,8 +24,8 @@ export default class Cart {
 
   openCart() {
     this.cartModal.classList.toggle("active")
-    this.isEmpty()
-
+    this.isEmpty();
+    
     setTimeout(() => {
       document.addEventListener("click", this.close)
       if (!this.cartModal.classList.contains("active")) {
@@ -35,6 +36,7 @@ export default class Cart {
 
   close({ target }) {
     if (!this.cartModal.contains(target)) {
+      this.isEmpty(2)
       this.cartModal.classList.remove("active")
       document.removeEventListener("click", this.close)
     }
